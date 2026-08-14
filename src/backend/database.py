@@ -155,13 +155,13 @@ initial_activities = {
     },
     "Manga Maniacs": {
         "description": "Dive into epic adventures, fierce rivalries, and unforgettable heroes from the world of Japanese Manga — where every page is a new journey!",
-        "schedule": "Tuesdays, 7:00 PM",
+        "schedule": "Tuesdays, 5:00 PM",
         "schedule_details": {
             "days": ["Tuesday"],
-            "start_time": "19:00",
-            "end_time": "20:00"
+            "start_time": "17:00",
+            "end_time": "18:00"
         },
-        "max_participants": 15,
+        "max_participants": 25,
         "participants": []
     },
     "Sunday Chess Tournament": {
