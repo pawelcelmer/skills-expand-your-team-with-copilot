@@ -568,6 +568,9 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `
         }
+        <button class="share-button" data-activity="${name}" data-description="${details.description.replace(/"/g, "&quot;")}" data-schedule="${formattedSchedule.replace(/"/g, "&quot;")}">
+          🔗 Share
+        </button>
       </div>
     `;
 
@@ -586,6 +589,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     }
+
+    // Add click handler for share button
+    const shareButton = activityCard.querySelector(".share-button");
+    shareButton.addEventListener("click", () => {
+      const shareTitle = shareButton.dataset.activity;
+      const shareDescription = shareButton.dataset.description;
+      const shareSchedule = shareButton.dataset.schedule;
+      const shareText = `Check out "${shareTitle}" at Mergington High School!\n${shareDescription}\nSchedule: ${shareSchedule}`;
+      const shareUrl = window.location.href;
+
+      if (navigator.share) {
+        navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+      } else {
+        navigator.clipboard.writeText(`${shareText}\n${shareUrl}`).then(() => {
+          const original = shareButton.textContent;
+          shareButton.textContent = "✅ Copied!";
+          setTimeout(() => { shareButton.textContent = original; }, 2000);
+        });
+      }
+    });
 
     activitiesList.appendChild(activityCard);
   }
